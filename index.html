@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATV Adventure Warszawa</title>
+  <meta name="description" content="Wynajem quadów w Warszawie. Jazda terenowa, wyprawy off-road, eventy i szybki kontakt." />
+  <style>
+    :root{
+      --bg:#0b0f0d;
+      --panel:#121816;
+      --text:#f4f7f5;
+      --muted:#b7c2bc;
+      --line:rgba(255,255,255,.09);
+      --brand:#b7ff3c;
+      --brand-dark:#95d72f;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+      --container:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(183,255,60,.12), transparent 24%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,.05), transparent 18%),
+        var(--bg);
+      color:var(--text);
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+    .section{padding:88px 0}
+    .eyebrow{
+      display:inline-block;padding:8px 14px;border:1px solid rgba(183,255,60,.25);
+      background:rgba(183,255,60,.08);color:var(--brand);border-radius:999px;
+      font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    }
+    .headline{font-size:clamp(38px,6vw,76px);line-height:1.02;margin:18px 0;font-weight:900}
+    .headline span{color:var(--brand)}
+    .sub{font-size:18px;line-height:1.7;color:var(--muted);max-width:700px}
+    .topbar{
+      position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+      background:rgba(11,15,13,.75);border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      min-height:76px;gap:16px
+    }
+    .brand{font-weight:900;letter-spacing:.02em;font-size:22px;color:#fff}
+    .nav{display:flex;gap:24px;color:#d8e0dc;font-size:15px}
+    .nav a:hover{color:var(--brand)}
+    .cta{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 22px;border-radius:18px;font-weight:800;border:1px solid transparent;
+      transition:.2s transform,.2s background,.2s border-color,.2s color;
+      cursor:pointer
+    }
+    .cta.primary{background:var(--brand);color:#0b0f0d}
+    .cta.primary:hover{transform:translateY(-1px);background:var(--brand-dark)}
+    .cta.secondary{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+    .cta.secondary:hover{background:rgba(255,255,255,.07)}
+    .hero{padding:72px 0 52px}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:center}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;max-width:700px}
+    .stat{
+      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      border-radius:22px;padding:20px;box-shadow:var(--shadow)
+    }
+    .stat strong{display:block;font-size:34px;color:var(--brand);line-height:1;margin-bottom:8px}
+    .hero-card,.card,.price-card,.tile,.tile-wide,.review-card,.review-summary{box-shadow:var(--shadow)}
+    .hero-card{
+      border:1px solid var(--line);border-radius:32px;overflow:hidden;background:var(--panel)
+    }
+    .hero-image{
+      min-height:560px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.58)),
+        url('quad1.jpg') center/cover;
+      display:flex;align-items:flex-end;padding:26px
+    }
+    .hero-badge{
+      width:100%;background:rgba(0,0,0,.42);border:1px solid rgba(183,255,60,.22);
+      border-radius:24px;padding:24px
+    }
+    .hero-badge h3{margin:0 0 10px;font-size:30px}
+    .hero-badge p{margin:0;color:#d6ddd9;line-height:1.6}
+    .section-title{font-size:clamp(30px,4vw,48px);font-weight:900;margin:14px 0}
+    .section-row{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px}
+    .section-row .sub{max-width:580px;font-size:16px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .card{
+      background:rgba(255,255,255,.04);border:1px solid var(--line);
+      border-radius:28px;overflow:hidden
+    }
+    .card-body{padding:22px}
+    .image{height:220px;background-size:cover;background-position:center}
+    .card h3{margin:0 0 14px;font-size:28px}
+    .meta{display:grid;gap:10px;color:var(--muted);font-size:15px}
+    .meta strong{color:#fff}
+    .card .cta{margin-top:18px;width:100%}
+    .price-band{
+      background:rgba(255,255,255,.025);
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    }
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .price-card{
+      background:var(--panel);border:1px solid var(--line);
+      border-radius:28px;padding:30px 24px;text-align:center
+    }
+    .price-card .kicker{letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-size:12px}
+    .price-card h3{font-size:34px;margin:14px 0 8px}
+    .price{font-size:56px;font-weight:900;color:var(--brand);line-height:1}
+    .price-card p{color:var(--muted);line-height:1.65}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .benefits{display:grid;gap:14px;margin-top:26px}
+    .benefit{
+      display:flex;gap:14px;align-items:flex-start;padding:18px;
+      background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:20px
+    }
+    .dot{width:12px;height:12px;border-radius:50%;background:var(--brand);margin-top:6px;flex:0 0 auto}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .gallery .tile,.gallery .tile-wide{
+      border-radius:28px;overflow:hidden;border:1px solid var(--line);background:var(--panel)
+    }
+    .tile .image{height:240px}
+    .tile-wide{grid-column:1 / -1}
+    .tile-wide .image{height:280px}
+    .contact{
+      background:linear-gradient(180deg, rgba(183,255,60,.92), rgba(160,231,55,.96));
+      color:#111;
+    }
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+    .contact-card{
+      background:rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.08);
+      border-radius:30px;padding:28px;box-shadow:0 18px 50px rgba(0,0,0,.12)
+    }
+    .contact-list{display:grid;gap:14px;font-size:19px;font-weight:700}
+    .contact-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+    .contact .cta.primary{background:#111;color:#fff}
+    .contact .cta.secondary{border-color:rgba(0,0,0,.2);background:transparent;color:#111}
+    .review-summary{
+      display:inline-flex;flex-direction:column;align-items:center;
+      padding:22px 26px;border-radius:28px;background:rgba(255,255,255,.04);
+      border:1px solid var(--line);margin:18px auto 0
+    }
+    .review-summary strong{font-size:56px;color:var(--brand);line-height:1}
+    .stars{font-size:26px;letter-spacing:4px;color:#ffd34e}
+    .review-head{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px
+    }
+    .slider-controls{display:flex;gap:10px}
+    .slider-btn{
+      width:52px;height:52px;border-radius:18px;border:1px solid var(--line);
+      background:rgba(255,255,255,.04);color:#fff;font-size:24px;cursor:pointer
+    }
+    .slider-btn:hover{background:rgba(255,255,255,.08)}
+    .slider{
+      display:flex;gap:18px;overflow-x:auto;scroll-behavior:smooth;
+      scrollbar-width:none;padding-bottom:8px
+    }
+    .slider::-webkit-scrollbar{display:none}
+    .review-card{
+      min-width:340px;max-width:340px;background:rgba(255,255,255,.04);
+      border:1px solid var(--line);border-radius:28px;padding:24px
+    }
+    .review-card img{width:68px;height:68px;border-radius:50%;object-fit:cover;margin-bottom:14px}
+    .review-card p{color:#d7ded9;line-height:1.7;margin:10px 0 0}
+    .review-card .author{margin-top:16px;color:var(--brand);font-weight:800}
+    footer{padding:26px 0;border-top:1px solid var(--line);color:#93a19a;text-align:center}
+    @media (max-width:980px){
+      .hero-grid,.about-grid,.contact-grid,.cards,.pricing{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .section{padding:70px 0}
+      .nav{display:none}
+      .hero-image{min-height:420px}
+      .review-card{min-width:82vw;max-width:82vw}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">ATV Adventure Warszawa</div>
+      <nav class="nav">
+        <a href="#oferta">Oferta</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#o-nas">O nas</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="cta primary" href="#kontakt">Zarezerwuj</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Jazda terenowa • Wynajem • Przygoda</div>
+          <h1 class="headline">Poczuj moc jazdy <span>na quadach</span></h1>
+          <p class="sub">
+            Organizujemy wynajem quadów, wyprawy terenowe i eventy off-road dla osób,
+            które chcą przeżyć coś mocnego, bezpiecznego i naprawdę zapamiętywalnego.
+          </p>
+          <div class="hero-actions">
+            <a class="cta primary" href="#oferta">Zobacz ofertę</a>
+            <a class="cta secondary" href="#kontakt">Skontaktuj się</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>120+</strong>zadowolonych klientów</div>
+            <div class="stat"><strong>8</strong>quadów w gotowości</div>
+            <div class="stat"><strong>4.9/5</strong>średnia ocen klientów</div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-image">
+            <div class="hero-badge">
+              <div class="eyebrow" style="margin-bottom:12px">Maszyna tygodnia</div>
+              <h3>ATV Storm 650 4x4</h3>
+              <p>Mocny quad do lasu, błota i wymagającego terenu. Idealny dla osób, które chcą poczuć prawdziwy off-road już od pierwszej minuty.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="oferta" class="section">
+      <div class="container">
+        <div class="section-row">
+          <div>
+            <div class="eyebrow">Oferta</div>
+            <h2 class="section-title">Wybierz quada dla siebie</h2>
+          </div>
+          <p class="sub">Quady dla początkujących i zaawansowanych. Każdy pojazd jest przygotowany do jazdy i regularnie sprawdzany przed wyjazdem.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="image" style="background-image:url('quad1.jpg')"></div>
+            <div class="card-body">
+              <h3>ATV Trail 300</h3>
+              <div class="meta">
+                <div><strong>Moc:</strong> 22 KM</div>
+                <div><strong>Zastosowanie:</strong> Rekreacja i lekkie trasy</div>
+                <div><strong>Cena:</strong> od 199 zł / dzień</div>
+              </div>
+              <a class="cta primary" href="#kontakt">Sprawdź dostępność</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="image" style="background-image:url('quad2.jpg')"></div>
+            <div class="card-body">
+              <h3>ATV Adventure 550</h3>
+              <div class="meta">
+                <div><strong>Moc:</strong> 39 KM</div>
+                <div><strong>Zastosowanie:</strong> Teren, las, wyprawy off-road</div>
+                <div><strong>Cena:</strong> od 299 zł / dzień</div>
+              </div>
+              <a class="cta primary" href="#kontakt">Sprawdź dostępność</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="image" style="background-image:url('quad3.jpg')"></div>
+            <div class="card-body">
+              <h3>ATV Pro X 700</h3>
+              <div class="meta">
+                <div><strong>Moc:</strong> 50 KM</div>
+                <div><strong>Zastosowanie:</strong> Mocna jazda i wymagający teren</div>
+                <div><strong>Cena:</strong> od 399 zł / dzień</div>
+              </div>
+              <a class="cta primary" href="#kontakt">Sprawdź dostępność</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cennik" class="section price-band">
+      <div class="container">
+        <div class="section-row">
+          <div>
+            <div class="eyebrow">Cennik</div>
+            <h2 class="section-title">Pakiety jazdy</h2>
+          </div>
+        </div>
+        <div class="pricing">
+          <article class="price-card">
+            <div class="kicker">Pakiet</div>
+            <h3>1 godzina</h3>
+            <div class="price">149 zł</div>
+            <p>Szybka jazda próbna z krótkim szkoleniem i wprowadzeniem do sprzętu.</p>
+            <a class="cta secondary" href="#kontakt">Wybierz pakiet</a>
+          </article>
+          <article class="price-card">
+            <div class="kicker">Pakiet</div>
+            <h3>Pół dnia</h3>
+            <div class="price">299 zł</div>
+            <p>Najlepszy wybór na weekendową przygodę i dłuższą trasę po terenie.</p>
+            <a class="cta primary" href="#kontakt">Wybierz pakiet</a>
+          </article>
+          <article class="price-card">
+            <div class="kicker">Pakiet</div>
+            <h3>Cały dzień</h3>
+            <div class="price">499 zł</div>
+            <p>Pełna wolność jazdy, sprzęt ochronny i maksymalna dawka adrenaliny.</p>
+            <a class="cta secondary" href="#kontakt">Wybierz pakiet</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="o-nas" class="section">
+      <div class="container about-grid">
+        <div>
+          <div class="eyebrow">Dlaczego my</div>
+          <h2 class="section-title">Przygoda, bezpieczeństwo i pełna kontrola</h2>
+          <p class="sub">
+            Tworzymy miejsce dla osób, które kochają teren, silniki i dobrą zabawę.
+            Pomagamy dobrać odpowiedni quad, trasę i poziom jazdy do doświadczenia klienta.
+          </p>
+          <div class="benefits">
+            <div class="benefit"><div class="dot"></div><div>Nowoczesne i regularnie serwisowane quady</div></div>
+            <div class="benefit"><div class="dot"></div><div>Sprzęt ochronny w cenie wynajmu</div></div>
+            <div class="benefit"><div class="dot"></div><div>Trasy dla początkujących i zaawansowanych</div></div>
+            <div class="benefit"><div class="dot"></div><div>Wyjazdy grupowe, urodziny i eventy firmowe</div></div>
+          </div>
+        </div>
+        <div class="gallery">
+          <div class="tile"><div class="image" style="background-image:url('quad1.jpg')"></div></div>
+          <div class="tile"><div class="image" style="background-image:url('quad2.jpg')"></div></div>
+          <div class="tile-wide"><div class="image" style="background-image:url('quad3.jpg')"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="opinie" class="section">
+      <div class="container">
+        <div class="review-head">
+          <div>
+            <div class="eyebrow">Opinie klientów</div>
+            <h2 class="section-title">Co mówią nasi klienci</h2>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn" id="prevBtn" aria-label="Poprzednie opinie">←</button>
+            <button class="slider-btn" id="nextBtn" aria-label="Następne opinie">→</button>
+          </div>
+        </div>
+
+        <div class="review-summary">
+          <strong>4.9/5</strong>
+          <div class="stars">★★★★★</div>
+          <div style="margin-top:8px;color:var(--muted)">Średnia ocen z <span style="font-weight:800;color:#fff">120 opinii</span></div>
+        </div>
+
+        <div class="slider" id="reviewSlider" style="margin-top:22px">
+          <article class="review-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Kamil">
+            <div class="stars" style="font-size:18px">★★★★★</div>
+            <p>„Mega przygoda! Quady w świetnym stanie, a trasa po lesie była kozacka. Na pewno wrócę!”</p>
+            <div class="author">— Kamil, Warszawa</div>
+          </article>
+          <article class="review-card">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michał">
+            <div class="stars" style="font-size:18px">★★★★★</div>
+            <p>„Super obsługa i konkretne szkolenie. Nawet jako początkujący czułem się pewnie.”</p>
+            <div class="author">— Michał, Legionowo</div>
+          </article>
+          <article class="review-card">
+            <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Paweł">
+            <div class="stars" style="font-size:18px">★★★★★</div>
+            <p>„Byliśmy ekipą na kawalerskim — najlepsza atrakcja całego dnia. Będziemy wracać.”</p>
+            <div class="author">— Paweł, Pruszków</div>
+          </article>
+          <article class="review-card">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Karolina">
+            <div class="stars" style="font-size:18px">★★★★★</div>
+            <p>„Świetna organizacja, szybki kontakt i naprawdę porządne quady. Polecam każdemu.”</p>
+            <div class="author">— Karolina, Warszawa</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="eyebrow" style="color:#1b1b1b;border-color:rgba(0,0,0,.15);background:rgba(0,0,0,.06)">Kontakt</div>
+          <h2 class="section-title" style="color:#111">Zarezerwuj jazdę już dziś</h2>
+          <p class="sub" style="color:rgba(0,0,0,.75)">
+            Skontaktuj się z nami i wybierz termin. Doradzimy model quada i pomożemy dobrać najlepszy pakiet.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-list">
+            <div>📞 +48 604 906 411</div>
+            <div>✉️ ogorzalekmateusz@gmail.com</div>
+            <div>📍 Gen. Tadeusza Pełczyńskiego 3/19, 01-471 Warszawa</div>
+          </div>
+          <div class="contact-actions">
+            <a class="cta primary" href="tel:+48604906411">Zadzwoń</a>
+            <a class="cta secondary" href="mailto:ogorzalekmateusz@gmail.com">Napisz maila</a>
+            <a class="cta secondary" href="https://wa.me/48604906411" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© DBS Mateusz Ogorzałek — ATV Adventure Warszawa</footer>
+
+  <script>
+    const slider = document.getElementById('reviewSlider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function cardStep() {
+      const firstCard = slider.querySelector('.review-card');
+      return firstCard ? firstCard.offsetWidth + 18 : 358;
+    }
+
+    function slide(direction) {
+      slider.scrollBy({ left: direction * cardStep(), behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', () => slide(-1));
+    nextBtn.addEventListener('click', () => slide(1));
+
+    let auto = setInterval(() => {
+      const max = slider.scrollWidth - slider.clientWidth;
+      const next = slider.scrollLeft + cardStep();
+      slider.scrollTo({ left: next >= max ? 0 : next, behavior: 'smooth' });
+    }, 3500);
+
+    slider.addEventListener('mouseenter', () => clearInterval(auto));
+    slider.addEventListener('mouseleave', () => {
+      clearInterval(auto);
+      auto = setInterval(() => {
+        const max = slider.scrollWidth - slider.clientWidth;
+        const next = slider.scrollLeft + cardStep();
+        slider.scrollTo({ left: next >= max ? 0 : next, behavior: 'smooth' });
+      }, 3500);
+    });
+  </script>
+</body>
+</html>
